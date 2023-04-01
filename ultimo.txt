@@ -1,0 +1,117 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+//void imprime(int num[]);
+void imprime(vector<int>& vet, int tam);
+void sort(vector<int>& arr, int size);
+
+
+int main() {
+
+  int valor = 1;
+  int tam = 5;
+  //cout << "Quantas pessoas há no círculo? ";
+  //cin >> tam;
+  int flag = tam+1;
+  int salto = 2;
+  //cout << "De quanto é o salto? ";
+ // cin >> salto;
+  int resto = 0;
+  
+  vector<int> num (tam);
+
+  for (int j = valor, i=0; i < tam; i++, j++)
+    num[i] = j;
+
+  cout << "Initial Vector: \n";
+  imprime(num, tam);
+
+int inicio = salto-1;
+int ultimo;
+while (tam > 1){
+
+  if (salto > tam){
+    salto = salto%tam;
+  }
+  cout << "inicio1= " << inicio << endl;
+  if (salto < tam){
+      for (int i=inicio; i<tam; i+=salto){
+        num[i] = flag;
+        ultimo = i;
+      }
+  
+   // cout << "ultimo= " << ultimo << endl;
+      if (ultimo < tam-1){
+        inicio = ultimo-inicio;
+      }
+      int remover = 0;
+      for (int i=0; i<tam; i++){
+        if(num[i] == flag){
+          remover++;
+        }
+      }  
+      sort(num, tam);
+
+      for (int i=0; i<remover; i++){
+        num.pop_back();
+      }
+
+      tam = num.size();
+    
+      //cout << "tam = " << tam << endl;
+      imprime(num, tam);
+      cout << "inicio2= " << inicio << endl;
+    
+  } else {
+    
+  }
+ 
+
+}
+
+ 
+  
+}
+
+void imprime(vector<int>& vet, int tam){
+
+  for (int i=0; i<tam; i++){
+    cout << vet[i] << ", ";
+  }
+  cout << endl;
+}
+
+
+
+void sort(vector<int>& arr, int size){
+
+  int dezena;
+
+  int i, j, temp;
+
+  for (i = 0; i < size-1; i++){
+    for (j = i+1; j < size; j++){
+      if (arr[i]>arr[j]){
+          temp = arr[i];
+          arr[i] = arr[j];
+          arr[j] = temp;
+      }
+    }
+  }
+}
+
+
+int remover(vector<int>& vet, int st, int r){
+  int tam = vet.size();
+  //cout << "tam=" << tam << endl;
+  vector<int>::iterator intNum;
+  intNum = vet.begin();
+  //intNum += 1;
+  vet.erase(intNum);
+  
+  
+  /*for (int i=st-1; i<tam; i+=st){
+    vet.erase(intNum);
+  }*/
+}
